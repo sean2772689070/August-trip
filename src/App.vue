@@ -8,6 +8,7 @@ const route = useRoute()
 <template>
   <div class="app">
     <router-view></router-view>
+    <!--    路由携带参数使得tabbar模块不显示-->
     <tab-bar v-show="!route.meta.hideTabBar"></tab-bar>
   </div>
 </template>
