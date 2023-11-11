@@ -1,6 +1,7 @@
 <script setup>
 import HomeNavBar from "@/views/home/cpns/HomeNavBar.vue";
 import HomeSearchBox from "@/views/home/cpns/HomeSearchBox.vue";
+
 </script>
 
 <template>
