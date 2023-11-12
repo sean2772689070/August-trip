@@ -8,6 +8,15 @@ export function getHotSuggests() {
 
 export function getCategoriesData() {
     return hyRequest.get({
-        url: "/home/"
+        url: "/home/categories"
+    })
+}
+
+export function getHouseList() {
+    return hyRequest.get({
+        url: "/home/houseList",
+        params: {
+            page: 1,
+        }
     })
 }

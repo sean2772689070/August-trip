@@ -46,8 +46,18 @@ const onConfirm = (val) => {
 
 // 热门地区
 const homeStore = useHomeStore();
-homeStore.fetchHotSuggestsData();
 const {hotSuggests} = storeToRefs(homeStore);
+//开始搜索
+const searchBtnClick = () => {
+  router.push({
+    path: "/search",
+    query: {
+      startDate: startDate.value,
+      endDate: endDate.value,
+      currentCity: currentCity.value.cityName,
+    }
+  })
+}
 </script>
 
 <template>
@@ -84,8 +94,7 @@ const {hotSuggests} = storeToRefs(homeStore);
         color="#ff9854"
         :round="false"
         :show-confirm="false"
-        @confirm="onConfirm">
-    </van-calendar>
+        @confirm="onConfirm"/>
     <!--    价格/人数选择-->
     <div class="section price-counter bottom-gray-line">
       <div class="start">价格不限</div>
@@ -104,6 +113,13 @@ const {hotSuggests} = storeToRefs(homeStore);
         </div>
       </template>
     </div>
+    <!--    搜索按钮-->
+    <div class="section search-btn">
+      <van-button @click="searchBtnClick" class="item" color="var(--theme-linear-gradient)" block round>
+        开始搜索
+      </van-button>
+    </div>
+
   </div>
 </template>
 
@@ -181,13 +197,20 @@ const {hotSuggests} = storeToRefs(homeStore);
   justify-content: flex-start;
   flex-wrap: wrap;
   margin: 10px 0;
-
+  height: auto;
   .item {
     padding: 4px 5px;
     margin: 5px 10px;
     font-size: 12px;
     border-radius: 14px;
     line-height: 1;
+  }
+}
+
+//搜索按钮
+.search-btn {
+  .item {
+    font-size: 20px;
   }
 }
 </style>
