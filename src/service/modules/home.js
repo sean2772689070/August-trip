@@ -12,11 +12,11 @@ export function getCategoriesData() {
     })
 }
 
-export function getHouseList() {
+export function getHouseList(currentPage) {
     return hyRequest.get({
         url: "/home/houseList",
         params: {
-            page: 1,
+            page: currentPage,
         }
     })
 }
