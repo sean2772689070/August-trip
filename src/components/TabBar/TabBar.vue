@@ -1,14 +1,25 @@
 <script setup>
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import tabBarDate from "@/assets/data/tabBar";
 import {getAsserURL} from "@/utils/load_assets";
+import {useRoute} from "vue-router";
 
+const route = useRoute();
 const active = ref(0);
+watch(route, (newValue) => {
+  const index = tabBarDate.findIndex(item => item.path === newValue.path);
+  if (index === -1) return;
+  active.value = index;
+})
+
 </script>
 
 <template>
   <div class="tab-bar">
-    <van-tabbar v-model="active" active-color="#ff9854">
+    <van-tabbar
+        route
+        v-model="active"
+        active-color="#ff9854">
       <template v-for="(item,index) in tabBarDate" :key="index">
         <van-tabbar-item :to="item.path">
           <span>{{ item.text }}</span>

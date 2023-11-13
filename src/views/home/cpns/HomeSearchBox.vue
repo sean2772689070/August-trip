@@ -1,6 +1,6 @@
 <script setup>
 
-import {ref} from "vue";
+import {computed, ref} from "vue";
 
 import {useRouter} from "vue-router";
 
@@ -9,6 +9,7 @@ import useCityStore from "@/stores/modules/city";
 import useHomeStore from "@/stores/modules/home";
 
 import {formatMonthDay, getDiffDays} from "@/utils/format_date";
+import useMainStore from "@/stores/modules/main";
 
 const router = useRouter();
 const cityClick = () => {
@@ -26,20 +27,18 @@ const positionClick = () => {
 const cityStore = useCityStore();
 const {currentCity} = storeToRefs(cityStore);
 // 日期范围处理
-const nowDate = new Date();
-const newDate = new Date();
-newDate.setDate(nowDate.getDate() + 1)
-
-const startDate = ref(formatMonthDay(nowDate));
-const endDate = ref(formatMonthDay(newDate));
-const stayCount = ref(getDiffDays(nowDate, newDate));
+const mainStore = useMainStore();
+const {startDate, endDate} = storeToRefs(mainStore);
+const startDateStr = computed(() => formatMonthDay(startDate.value));
+const endDateStr = computed(() => formatMonthDay(endDate.value));
+const stayCount = ref(getDiffDays(startDate.value, endDate.value));
 
 const showCalendar = ref(false);
 const onConfirm = (val) => {
   const selectStartDate = val[0];
   const selectEndDate = val[1];
-  startDate.value = formatMonthDay(selectStartDate);
-  endDate.value = formatMonthDay(selectEndDate);
+  startDate.value = selectStartDate;
+  endDate.value = selectEndDate;
   stayCount.value = getDiffDays(selectStartDate, selectEndDate);
   showCalendar.value = false;
 }
@@ -75,7 +74,7 @@ const searchBtnClick = () => {
       <div class="start">
         <div class="date">
           <span class="tip">入住</span>
-          <span class="time">{{ startDate }}</span>
+          <span class="time">{{ startDateStr }}</span>
         </div>
       </div>
       <div class="stay">
@@ -84,7 +83,7 @@ const searchBtnClick = () => {
       <div class="end">
         <div class="date" style="width: 74px;">
           <span class="tip">离店</span>
-          <span class="time">{{ endDate }}</span>
+          <span class="time">{{ endDateStr }}</span>
         </div>
       </div>
     </div>

@@ -21,12 +21,12 @@ export default function useScroll() {
     onActivated(() => {
         window.addEventListener("scroll", scrollEventListenerHandler)
     })
-
     onUnmounted(() => {
         window.removeEventListener("scroll", scrollEventListenerHandler)
     })
 
     onDeactivated(() => {
+
         window.removeEventListener("scroll", scrollEventListenerHandler)
     })
     return {isReachBottom, clientHeight, scrollTop, scrollHeight};
