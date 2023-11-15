@@ -27,7 +27,7 @@ const endDateStr = computed(() => formatMonthDay(endDate.value, "MM.DD"));
         关键字/位置/民宿
       </div>
       <div class="right">
-        <i class="icon-search"></i>
+        <img src="@/assets/img/home/搜索.png" class="icon-search" alt=""/>
       </div>
     </div>
   </div>
@@ -50,10 +50,21 @@ const endDateStr = computed(() => formatMonthDay(endDate.value, "MM.DD"));
       display: flex;
       align-items: center;
     }
+
   }
 
   .content {
+    width: 100%;
     padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .right {
+      img {
+        width: 16px;
+      }
+    }
   }
 }
 </style>

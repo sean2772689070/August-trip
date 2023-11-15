@@ -26,7 +26,6 @@ export default function useScroll() {
     })
 
     onDeactivated(() => {
-
         window.removeEventListener("scroll", scrollEventListenerHandler)
     })
     return {isReachBottom, clientHeight, scrollTop, scrollHeight};

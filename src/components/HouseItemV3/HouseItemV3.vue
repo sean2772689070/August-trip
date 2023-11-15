@@ -9,7 +9,7 @@ const {image, summaryText, houseName, location, finalPrice, productPrice, priceT
 </script>
 
 <template>
-  <div class="house-item">
+  <div class="house-item" @click="itemClick">
     <div class="item-inner">
       <div class="cover">
         <img :src="image.url" alt="">
@@ -90,9 +90,11 @@ const {image, summaryText, houseName, location, finalPrice, productPrice, priceT
         }
 
         .tip {
-          padding: 0 5px;
+          line-height: 1;
+          padding: 2px 5px;
           margin-right: 5px;
           border-radius: 7px;
+          font-size: 12px;
           color: #fff;
           background: #FA7562;
         }

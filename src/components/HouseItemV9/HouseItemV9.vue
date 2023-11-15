@@ -11,6 +11,8 @@ const {image, summaryText, houseName, commentScore, finalPrice} = props.itemData
 const score = computed(() => {
   return Number(commentScore)
 })
+
+
 </script>
 
 <template>

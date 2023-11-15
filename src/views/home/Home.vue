@@ -61,6 +61,6 @@ const isShowSearchBar = computed(() => {
   height: 45px;
   padding: 16px 16px;
   background: #fff;
-  z-index: 99999;
+  z-index: 9;
 }
 </style>
