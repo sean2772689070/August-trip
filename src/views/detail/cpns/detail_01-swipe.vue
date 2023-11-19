@@ -22,6 +22,11 @@ const getName = (name) => {
   const results = nameReg.exec(name);
   return results[1];
 }
+
+const getCategoryIndex = (item) => {
+  const valueAeeay = swipeGroup[item?.enumPictureCategory];
+  return valueAeeay?.findIndex(data => data === item) + 1;
+};
 </script>
 
 <template>
@@ -35,8 +40,16 @@ const getName = (name) => {
       <template #indicator="{active, total}">
         <div class="indicator">
           <template v-for="(value, key) in swipeGroup" :key="key">
-          <span class="item" :class="{active: true}">
-            {{ getName(value[0].title) }}
+          <span
+              class="item"
+              :class="{active: swipeData[active]?.enumPictureCategory === Number(key)}"
+          >
+            <span class="text">
+              {{ getName(value[0].title) }}
+            </span>
+            <span v-show="swipeData[active]?.enumPictureCategory === Number(key)" class="count">
+              {{ getCategoryIndex(swipeData[active]) }}/{{ value.length }}
+            </span>
           </span>
           </template>
         </div>
@@ -66,12 +79,12 @@ const getName = (name) => {
 
       .item {
         margin: 0 3px;
+        padding: 2px 10px;
+        line-height: 1;
+        border-radius: 8px;
 
         &.active {
           color: #000;
-          padding: 2px 10px;
-          line-height: 1;
-          border-radius: 8px;
           background: #fff;
         }
       }
