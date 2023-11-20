@@ -6,7 +6,7 @@ defineProps({
   },
   moreText: {
     type: String,
-    default: "查看全部"
+    default: ""
   }
 })
 </script>
@@ -23,7 +23,7 @@ defineProps({
         <h3>我是默认内容</h3>
       </slot>
     </div>
-    <div class="footer">
+    <div class="footer" v-if="moreText.length">
       <span class="more">
         {{ moreText }}
       </span>

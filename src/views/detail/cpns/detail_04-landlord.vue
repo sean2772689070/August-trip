@@ -116,7 +116,7 @@ const {topScroll, hotelLogo, hotelName, hotelTags, hotelSummary} = toRefs(props.
   .footer {
     display: flex;
     justify-content: space-between;
-
+    margin-top: 40px;
     .item {
       .title,
       .tip {
